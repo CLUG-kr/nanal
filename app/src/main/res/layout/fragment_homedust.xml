@@ -1,6 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/tv_homedust_title"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="미세먼지 많은 날"
+        android:textSize="28dp" />
+
+    <LinearLayout
+        android:id="@+id/layout_homedust_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_homedust_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="미세먼지" />
+
+            <TextView
+                android:id="@+id/tv_homedust_normal_degree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="98㎛/㎥"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/tv_homedust_normal_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="나쁨"
+                android:textSize="24dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/boundary2"
+            android:layout_width="1dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#000000"
+            android:gravity="center_vertical" />
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_homedust_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="초미세먼지" />
+
+            <TextView
+                android:id="@+id/tv_homedust_small_degree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="34㎛/㎥"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/tv_homedust_small_degree2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="보통"
+                android:textSize="24dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_homedust_face"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_homeweather_info"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/backbox"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="미세먼지 농도가 높으므로
+외부 활동을 자제해주시고
+마스크를 필히 착용하시길 바랍니다" />
+
+
+</LinearLayout>
