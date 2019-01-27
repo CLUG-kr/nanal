@@ -17,7 +17,10 @@ class HomeFragmentStatePagerAdapter(fm: FragmentManager, val fragmentCount: Int)
 
     override fun getCount(): Int = fragmentCount
 
+    /*
     override fun getItemPosition(`object`: Any): Int {
         return PagerAdapter.POSITION_NONE
     }
+     */
+
 }

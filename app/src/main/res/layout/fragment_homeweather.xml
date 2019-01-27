@@ -10,8 +10,8 @@
         android:id="@+id/tv_homeweather_title"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center"
         android:text="쌀쌀한 날"
         android:textSize="28dp" />
@@ -20,13 +20,13 @@
         android:id="@+id/layout_homeweather_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/img_homeweather_weather_icon"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="80dp"
             android:src="@mipmap/ic_launcher" />
 
@@ -50,13 +50,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="최고온도" />
+                android:text="현재온도" />
 
             <TextView
                 android:id="@+id/tv_homeweather_max_degree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12ºC"
+                android:text="10ºC"
                 android:textSize="24dp" />
         </LinearLayout>
 
@@ -70,7 +70,7 @@
             android:gravity="center_vertical" />
 
         <LinearLayout
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="80dp"
             android:gravity="center"
             android:orientation="vertical">
@@ -80,13 +80,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="최저온도" />
+                android:text=" 최고/최저온도" />
 
             <TextView
                 android:id="@+id/tv_homeweather_min_degree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3ºC"
+                android:text="12/3ºC"
                 android:textSize="24dp" />
         </LinearLayout>
 
@@ -95,7 +95,7 @@
     <LinearLayout
         android:id="@+id/layout_homeweather_closet"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="240dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -170,10 +170,7 @@
         android:background="@drawable/backbox"
         android:gravity="center"
         android:padding="16dp"
-        android:text="오늘은 일교차가 매우 큽니다.
-        얇은 가디건을 가지고 다니시는 것을 권합니다.
-그렇지만 미세먼지 양은 적어서,
-외부활동하기 좋을 것으로 예상이 됩니다." />
+        android:text="오늘은 일교차가 매우 큽니다.\n얇은 가디건을 가지고 다니시는 것을 권합니다.\n그렇지만 미세먼지 양은 적어서,\n외부활동하기 좋을 것으로 예상이 됩니다." />
 
 
 </LinearLayout>
