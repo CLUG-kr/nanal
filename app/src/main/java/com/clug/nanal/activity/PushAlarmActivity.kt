@@ -2,6 +2,7 @@ package com.clug.nanal.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.clug.nanal.R
 
 class PushAlarmActivity : AppCompatActivity() {
 

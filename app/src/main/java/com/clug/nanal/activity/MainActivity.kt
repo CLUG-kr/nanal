@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureBottomNavigation() {
-        vp_main_navi_act_frag_pager.adapter = MainFragmentStatePagerAdapter(supportFragmentManager, 3)
-        vp_main_navi_act_frag_pager.offscreenPageLimit = 3
+        vp_main_navi_act_frag_pager.adapter = MainFragmentStatePagerAdapter(supportFragmentManager, 4)
+        vp_main_navi_act_frag_pager.offscreenPageLimit = 4
 
         // ViewPager와 Tablayout을 엮어줍니다!
         tl_main_navi_act_bottom_menu.setupWithViewPager(vp_main_navi_act_frag_pager)
@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         //탭 하나하나 TabLayout에 연결시켜줍니다.
         tl_main_navi_act_bottom_menu.getTabAt(0)!!.customView = bottomNaviLayout.findViewById(R.id.btn_main_navi_home_tab) as ImageView
-        tl_main_navi_act_bottom_menu.getTabAt(1)!!.customView = bottomNaviLayout.findViewById(R.id.btn_main_navi_addview_tab) as ImageView
-        tl_main_navi_act_bottom_menu.getTabAt(2)!!.customView = bottomNaviLayout.findViewById(R.id.btn_main_navi_setting_tab) as ImageView
+        tl_main_navi_act_bottom_menu.getTabAt(1)!!.customView = bottomNaviLayout.findViewById(R.id.btn_main_navi_location_tab) as ImageView
+        tl_main_navi_act_bottom_menu.getTabAt(2)!!.customView = bottomNaviLayout.findViewById(R.id.btn_main_navi_addview_tab) as ImageView
+        tl_main_navi_act_bottom_menu.getTabAt(3)!!.customView = bottomNaviLayout.findViewById(R.id.btn_main_navi_setting_tab) as ImageView
     }
 }
