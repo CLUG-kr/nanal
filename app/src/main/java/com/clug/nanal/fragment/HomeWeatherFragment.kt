@@ -26,7 +26,7 @@ class HomeWeatherFragment : Fragment() {
     lateinit var sex: String
     var tempo: Int = 0
 
-    lateinit var homeweather : HomeScreenWeather
+    lateinit var homeweather: HomeScreenWeather
 
     lateinit var location_Large: String
     lateinit var location_Medium: String
@@ -47,8 +47,20 @@ class HomeWeatherFragment : Fragment() {
 
         setCloset()
 
+        refresh_homeweather.setOnRefreshListener {
 
+            homeweather = HomeScreenWeather()
+
+            getSharedPreferenceController()
+
+            setTempo()
+
+            setCloset()
+
+            refresh_homeweather.isRefreshing = false
+        }
     }
+
 
     fun getSharedPreferenceController() {
         name = SharedPreferenceController.getUserName(activity!!)
@@ -76,7 +88,7 @@ class HomeWeatherFragment : Fragment() {
             mNow = System.currentTimeMillis()
             //return tFormat.format(mNow);
             val now = Integer.parseInt(tFormat.format(mNow))
-            return if (now % 100 / 10 < 2) {
+            return if (now % 100 / 10 <= 2) {
                 if (now / 1000 == 0) {
                     "0" + Integer.toString(now - 70)
                 } else {
@@ -228,8 +240,8 @@ class HomeWeatherFragment : Fragment() {
 
         homeParsing(homeweather)
 
-        tv_homeweather_now_degree.text=homeweather.getTemperature()+"ºC"
-        tv_homeweather_mm_degree.text=homeweather.getHighest()+"/"+homeweather.getLowest()+"ºC"
+        tv_homeweather_now_degree.text = homeweather.getTemperature() + "ºC"
+        tv_homeweather_mm_degree.text = homeweather.getHighest() + "/" + homeweather.getLowest() + "ºC"
 
 
         toast("기온 : " + homeweather.getTemperature() + "최고기온 : " + homeweather.getHighest() + "최저기온 : " + homeweather.getLowest())

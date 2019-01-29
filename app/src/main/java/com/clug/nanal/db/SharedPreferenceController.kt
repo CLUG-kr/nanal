@@ -12,14 +12,13 @@ object SharedPreferenceController {
     private val USER_LOCATION_LARGE: String? = "user_location_large"
     private val USER_LOCATION_MEDIUM: String? = "user_location_medium"
     private val USER_LOCATION_SMALL: String? = "user_location_small"
+    private val HOME1 : String = "home1"
+    private val HOME2 : String = "home2"
+    private val HOME3 : String = "home3"
+    private val HOME4 : String = "home4"
+    private val HOME5 : String = "home5"
 
     private var pref: SharedPreferences? = null
-
-    fun getPref(context: Context) {
-        if (pref == null) {
-            pref = context.getSharedPreferences("data", Context.MODE_PRIVATE)
-        }
-    }
 
     fun setUserName(ctx: Context, input_name: String) {
         val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
@@ -56,11 +55,80 @@ object SharedPreferenceController {
         editor.commit()
     }
 
-
     fun setUserLocationSmall(ctx: Context, input_location: String) {
         val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = preferences.edit()
         editor.putString(USER_LOCATION_SMALL, input_location)
+        editor.commit()
+    }
+
+    fun setHome1True(ctx: Context) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(HOME1, "유")
+        editor.commit()
+    }
+
+    fun setHome1False(ctx: Context) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(HOME1, "무")
+        editor.commit()
+    }
+
+    fun setHome2True(ctx: Context) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(HOME2, "유")
+        editor.commit()
+    }
+
+    fun setHome2False(ctx: Context) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(HOME2, "무")
+        editor.commit()
+    }
+
+    fun setHome3True(ctx: Context) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(HOME3, "유")
+        editor.commit()
+    }
+
+    fun setHome3False(ctx: Context) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(HOME3, "무")
+        editor.commit()
+    }
+
+    fun setHome4True(ctx: Context) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(HOME4, "유")
+        editor.commit()
+    }
+
+    fun setHome4False(ctx: Context) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(HOME4, "무")
+        editor.commit()
+    }
+
+    fun setHome5True(ctx: Context) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(HOME5, "유")
+        editor.commit()
+    }
+
+    fun setHome5False(ctx: Context) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(HOME5, "무")
         editor.commit()
     }
 
@@ -92,6 +160,31 @@ object SharedPreferenceController {
     fun getUserLocationSmall(ctx: Context): String {
         val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
         return preferences.getString(USER_LOCATION_SMALL, "")
+    }
+
+    fun getHome1(ctx: Context): String {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        return preferences.getString(HOME1, "")
+    }
+
+    fun getHome2(ctx: Context): String {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        return preferences.getString(HOME2, "")
+    }
+
+    fun getHome3(ctx: Context): String {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        return preferences.getString(HOME3, "")
+    }
+
+    fun getHome4(ctx: Context): String {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        return preferences.getString(HOME4, "")
+    }
+
+    fun getHome5(ctx: Context): String {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        return preferences.getString(HOME5, "")
     }
 
     fun clearUserSharedPreferences(ctx: Context) {
