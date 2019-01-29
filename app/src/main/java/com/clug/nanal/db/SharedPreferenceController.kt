@@ -11,6 +11,12 @@ object SharedPreferenceController {
 
     private var pref: SharedPreferences? = null
 
+    fun getPref(context: Context){
+        if(pref==null){
+            pref=context.getSharedPreferences("data", Context.MODE_PRIVATE)
+        }
+    }
+
     fun setUserName(ctx: Context, input_name: String) {
         val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = preferences.edit()
