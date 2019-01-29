@@ -20,8 +20,8 @@ class HomeWeatherFragment : Fragment() {
     lateinit var name: String
     lateinit var sex: String
     var tempo: Int = 0
-    lateinit var location: String
-
+    lateinit var location_Big: String
+    lateinit var location_Small: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_homeweather, container, false)
@@ -32,18 +32,24 @@ class HomeWeatherFragment : Fragment() {
 
         getSharedPreferenceController()
 
+        setView()
+
         setCloset()
     }
 
     fun getSharedPreferenceController() {
         name = SharedPreferenceController.getUserName(activity!!)
         sex = SharedPreferenceController.getUserSex(activity!!)
-       // tempo = SharedPreferenceController.getUserTempo(activity!!)
-        location = SharedPreferenceController.getUserLocationSmall(activity!!)
+        tempo = SharedPreferenceController.getUserTempo(activity!!)
+        location_Big = SharedPreferenceController.getUserLocationBig(activity!!)
+        location_Small = SharedPreferenceController.getUserLocationSmall(activity!!)
+    }
+
+    fun setView() {
+        //민지 위치 정보 가지고 뷰 설정하기
     }
 
     fun setCloset() {
-        //Log.e(SharedPreferenceController.getUserSex(activity!!), "오노")
-        //디비에서 꺼내서 이미지 설정하기
+        //나래 사용자 정보가지고 옷 설정하기
     }
 }
