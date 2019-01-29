@@ -322,7 +322,7 @@ class GpsInfo(private val mContext: Context) : Service(), LocationListener {
 
         // 대화창 배경 색 설정
 
-        alert.window!!.setBackgroundDrawable(ColorDrawable(Color.argb(255, 192, 192, 192)))
+        alert.window!!.setBackgroundDrawable(ColorDrawable(Color.argb(255, 149, 219, 209)))
 
 
         alert.show()
