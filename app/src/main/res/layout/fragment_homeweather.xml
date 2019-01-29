@@ -46,14 +46,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_homeweather_max_tempo"
+                android:id="@+id/tv_homeweather_now_tempo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="현재온도" />
 
             <TextView
-                android:id="@+id/tv_homeweather_max_degree"
+                android:id="@+id/tv_homeweather_now_degree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10ºC"
@@ -76,18 +76,18 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_homeweather_min_tempo"
+                android:id="@+id/tv_homeweather_mm_tempo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text=" 최고/최저온도" />
 
             <TextView
-                android:id="@+id/tv_homeweather_min_degree"
+                android:id="@+id/tv_homeweather_mm_degree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12/3ºC"
-                android:textSize="24dp" />
+                android:textSize="20dp" />
         </LinearLayout>
 
     </LinearLayout>

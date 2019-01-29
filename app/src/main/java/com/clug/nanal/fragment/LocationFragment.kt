@@ -51,7 +51,7 @@ class LocationFragment : Fragment() {
     }
 
     private fun setView() {
-        tv_location_notify.text = "설정된 위치 : " + SharedPreferenceController.getUserLocationBig(activity!!) + " " + SharedPreferenceController.getUserLocationSmall(activity!!)
+        tv_location_notify.text = "설정된 위치 : " + SharedPreferenceController.getUserLocationLarge(activity!!) + " " + SharedPreferenceController.getUserLocationMedium(activity!!) + " " + SharedPreferenceController.getUserLocationSmall(activity!!)
     }
 
     private fun setViewClickListener() {
@@ -103,11 +103,12 @@ class LocationFragment : Fragment() {
 
                 toast(a.adminArea + " " + a.subLocality + " " + a.thoroughfare)
 
-                tv_location_notify.text = "설정된 위치 : " + a.adminArea + " " + a.subLocality
+                tv_location_notify.text = "설정된 위치 : " + a.adminArea + " " + a.subLocality+ " " + a.thoroughfare
 
+                SharedPreferenceController.setUserLocationLarge(activity!!, a.adminArea)
+                SharedPreferenceController.setUserLocationMedium(activity!!, a.subLocality)
+                SharedPreferenceController.setUserLocationSmall(activity!!, a.thoroughfare)
 
-                SharedPreferenceController.setUserLocationSmall(activity!!, a.subLocality)
-                SharedPreferenceController.setUserLocationBig(activity!!, a.adminArea)
 
 
 /*
