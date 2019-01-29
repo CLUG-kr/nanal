@@ -1,5 +1,6 @@
 package com.clug.nanal.fragment
 
+import android.content.SharedPreferences
 import android.location.Geocoder
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -18,6 +19,7 @@ import java.io.IOException
 import kotlin.collections.ArrayList
 import android.support.v4.content.ContextCompat
 import android.os.Build
+import com.clug.nanal.db.SharedPreferenceController
 
 
 class LocationFragment : Fragment() {
@@ -43,7 +45,13 @@ class LocationFragment : Fragment() {
 
         setViewClickListener()
 
+        setView()
+
         callPermission()
+    }
+
+    private fun setView() {
+        tv_location_notify.text = "설정된 위치 : " + SharedPreferenceController.getUserLocationBig(activity!!) + " " + SharedPreferenceController.getUserLocationSmall(activity!!)
     }
 
     private fun setViewClickListener() {
@@ -78,7 +86,7 @@ class LocationFragment : Fragment() {
 
             val longitude = gps!!.longitude
 
-            toast("lat : " + latitude + " lon : " + longitude)
+//            toast("lat : " + latitude + " lon : " + longitude)
 
             //Geocoder
 
@@ -94,6 +102,14 @@ class LocationFragment : Fragment() {
                 val a = addr!![0]
 
                 toast(a.adminArea + " " + a.subLocality + " " + a.thoroughfare)
+
+                tv_location_notify.text = "설정된 위치 : " + a.adminArea + " " + a.subLocality
+
+
+                SharedPreferenceController.setUserLocationSmall(activity!!, a.subLocality)
+                SharedPreferenceController.setUserLocationBig(activity!!, a.adminArea)
+
+
 /*
     for (i in 0..a.getMaxAddressLineIndex()) {
 

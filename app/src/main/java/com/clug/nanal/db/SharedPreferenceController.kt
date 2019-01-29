@@ -2,18 +2,21 @@ package com.clug.nanal.db
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
+import org.jetbrains.anko.db.INTEGER
 
 object SharedPreferenceController {
-    private val USER_NAME: String? = null
-    private val USER_SEX: String? = null
-    private val USER_TEMPO: String? = null
-    private val USER_LOCATION: String? = null
+    private val USER_NAME: String? = "user_name"
+    private val USER_SEX: String? ="user_sex"
+    private val USER_TEMPO: String? = "user_tempo"
+    private val USER_LOCATIONBIG: String? = "user_location_big"
+    private val USER_LOCATIONSMALL: String? = "user_location_small"
 
     private var pref: SharedPreferences? = null
 
-    fun getPref(context: Context){
-        if(pref==null){
-            pref=context.getSharedPreferences("data", Context.MODE_PRIVATE)
+    fun getPref(context: Context) {
+        if (pref == null) {
+            pref = context.getSharedPreferences("data", Context.MODE_PRIVATE)
         }
     }
 
@@ -38,10 +41,17 @@ object SharedPreferenceController {
         editor.commit()
     }
 
-    fun setUserLocationX(ctx: Context, input_location: String) {
+    fun setUserLocationBig(ctx: Context, input_location_big: String) {
         val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = preferences.edit()
-        editor.putString(USER_LOCATION, input_location)
+        editor.putString(USER_LOCATIONBIG, input_location_big)
+        editor.commit()
+    }
+
+    fun setUserLocationSmall(ctx: Context, input_location_small: String) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putString(USER_LOCATIONSMALL, input_location_small)
         editor.commit()
     }
 
@@ -57,12 +67,17 @@ object SharedPreferenceController {
 
     fun getUserTempo(ctx: Context): Int {
         val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
-        return preferences.getInt(USER_TEMPO, -1)
+        return preferences.getInt(USER_TEMPO, 0)
     }
 
-    fun getUserLocation(ctx: Context): String {
+    fun getUserLocationBig(ctx: Context): String {
         val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
-        return preferences.getString(USER_LOCATION, "")
+        return preferences.getString(USER_LOCATIONBIG, "")
+    }
+
+    fun getUserLocationSmall(ctx: Context): String {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        return preferences.getString(USER_LOCATIONSMALL, "")
     }
 
     fun clearUserSharedPreferences(ctx: Context) {
