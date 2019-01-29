@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="64dp"
-            android:text="설정된 위치 : 서울시 동작구" />
+            android:text="설정된 위치 :" />
 
         <Button
             android:id="@+id/btn_location_now"

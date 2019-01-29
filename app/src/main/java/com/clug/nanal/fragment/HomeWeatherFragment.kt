@@ -11,6 +11,7 @@ import com.clug.nanal.R
 import com.clug.nanal.adapter.GpsInfo
 import com.clug.nanal.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_location.*
+import org.jetbrains.anko.db.INTEGER
 import org.jetbrains.anko.support.v4.toast
 import java.util.*
 
@@ -37,8 +38,8 @@ class HomeWeatherFragment : Fragment() {
     fun getSharedPreferenceController() {
         name = SharedPreferenceController.getUserName(activity!!)
         sex = SharedPreferenceController.getUserSex(activity!!)
-        tempo = SharedPreferenceController.getUserTempo(activity!!)
-        location = SharedPreferenceController.getUserLocation(activity!!)
+       // tempo = SharedPreferenceController.getUserTempo(activity!!)
+        location = SharedPreferenceController.getUserLocationSmall(activity!!)
     }
 
     fun setCloset() {
