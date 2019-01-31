@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SplashActivity">
+    tools:context=".activity.StartActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -58,4 +58,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="169dp"
         app:srcCompat="@mipmap/ic_launcher" />
+
 </RelativeLayout>

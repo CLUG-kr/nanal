@@ -111,7 +111,7 @@ class HomeWeatherFragment : Fragment() {
         var inText = false
 
         try {
-            val url = URL("https://raw.githubusercontent.com/CLUG-kr/nanal/master/weather_location.xml")
+            val url = URL("https://raw.githubusercontent.com/CLUG-kr/nanal/master/weather_location2.xml")
 
             val parserCreator = XmlPullParserFactory.newInstance()
             val parser = parserCreator.newPullParser()
@@ -171,12 +171,15 @@ class HomeWeatherFragment : Fragment() {
 
                     XmlPullParser.END_TAG -> if (parser.name == "text") {
 
-                        if (city == home.getCity()) {
-                            if (borough == home.getBorough()) {
-                                if (dong == home.getDong()) {
-                                    home.setX(x!!)
-                                    home.setY(y!!)
-                                    toast(x + " " + y)
+                        if(city.equals(home.getCity())){
+                            if(borough.equals(home.getBorough())){
+                                if(dong.equals("없음")){
+                                    home.setX(x!!);
+                                    home.setY(y!!);
+                                }
+                                if(dong.equals(home.getDong())){
+                                    home.setX(x!!);
+                                    home.setY(y!!);
                                 }
                             }
                         }
@@ -203,12 +206,6 @@ class HomeWeatherFragment : Fragment() {
         var ny: String? = null
         var category: String? = null
         var obsrValue: String? = null
-
-        val homeweather = HomeScreenWeather()
-
-        homeweather.setCity(location_Large)
-        homeweather.setBorough(location_Medium)
-        homeweather.setDong(location_Small)
 
         baseTime = getTime()
         baseDate = getDate()

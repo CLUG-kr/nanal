@@ -44,12 +44,12 @@
         app:layout_constraintTop_toBottomOf="@+id/cloth" />
 
     <Button
-        android:onClick="goToSurvey4_1"
+        android:id="@+id/btn_survey3_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="6dp"
         android:layout_marginBottom="40dp"
         android:text="확인"
         app:layout_constraintBottom_toBottomOf="parent"

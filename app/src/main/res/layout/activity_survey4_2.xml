@@ -127,12 +127,12 @@
         app:layout_constraintTop_toBottomOf="@+id/mtm" />
 
     <Button
-        android:onClick="goToSurvey4_3"
+        android:id="@+id/btn_survey4_2_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginStart="148dp"
-        android:layout_marginEnd="148dp"
+        android:layout_marginEnd="135dp"
         android:layout_marginBottom="40dp"
         android:text="확인"
         app:layout_constraintBottom_toBottomOf="parent"

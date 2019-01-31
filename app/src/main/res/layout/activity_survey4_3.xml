@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/skirt" />
 
     <Button
-        android:onClick="goToSurvey5"
+        android:id="@+id/btn_survey4_3_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

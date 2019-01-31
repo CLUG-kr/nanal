@@ -44,11 +44,12 @@
 
     <CheckBox
         android:id="@+id/Male"
-        android:onClick="onlyOneGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
+        android:checked="false"
+        android:onClick="onlyOneGender"
         android:text="남성"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,10 +57,11 @@
 
     <CheckBox
         android:id="@+id/Female"
-        android:onClick="onlyOneGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:checked="false"
+        android:onClick="onlyOneGender"
         android:text="여성"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -67,12 +69,12 @@
 
 
     <Button
-        android:onClick="goToSurvey2"
+        android:id="@+id/btn_survey1_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="3dp"
         android:layout_marginBottom="40dp"
         android:text="확인"
         app:layout_constraintBottom_toBottomOf="parent"
