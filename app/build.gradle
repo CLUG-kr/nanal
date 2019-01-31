@@ -40,4 +40,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
     implementation 'org.jetbrains.anko:anko:0.10.5'
+
+    compile 'com.ssomai:android.scalablelayout:2.1.6'
 }

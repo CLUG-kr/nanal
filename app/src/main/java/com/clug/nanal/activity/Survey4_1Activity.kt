@@ -8,6 +8,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import com.clug.nanal.R
+import com.clug.nanal.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_survey2.*
 import kotlinx.android.synthetic.main.activity_survey3.*
 import kotlinx.android.synthetic.main.activity_survey4_1.*
@@ -18,14 +19,16 @@ class Survey4_1Activity : AppCompatActivity(){
         setContentView(R.layout.activity_survey4_1)
 
         btn_survey4_1_ok.setOnClickListener{
+            getUserTemp(26)
+
             val intent = Intent(this, Survey4_2Activity::class.java)
             startActivity(intent)
             finish()
         }
     }
 
-    internal fun getUserTemp(userTemp: Int, temp: Int): Int {
-        var userTemp = userTemp
+    internal fun getUserTemp(temp: Int): Int {
+        var userTemp = SharedPreferenceController.getUserTempo(this)
         val cardigan = findViewById<View>(R.id.cardigan) as CheckBox
         val zipup = findViewById<View>(R.id.zipup) as CheckBox
         val jacket = findViewById<View>(R.id.jacket) as CheckBox
