@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_survey5.*
 import org.jetbrains.anko.toast
 import java.util.*
 
-class Survey5Activity : AppCompatActivity(){
+class Survey5Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,20 +27,22 @@ class Survey5Activity : AppCompatActivity(){
 
         val preTempo = intent.extras!!.getFloat("tempo")
 
-        btn_survey5_ok.setOnClickListener{
-            SharedPreferenceController.setUserTempo(this,
-                    getRefTemp(preTempo, SharedPreferenceController.getUserTempo(this),SharedPreferenceController.getUserType(this)))
-            toast(""+SharedPreferenceController.getUserTempo(this))
-            finish()
+
+        btn_survey5_ok.setOnClickListener {
+            if (soCold.isChecked || cold.isChecked || fine.isChecked || hot.isChecked || soHot.isChecked) {
+                SharedPreferenceController.setUserTempo(this,
+                        getRefTemp(preTempo, SharedPreferenceController.getUserTempo(this), SharedPreferenceController.getUserType(this)))
+                toast("" + SharedPreferenceController.getUserTempo(this))
+                finish()
+            }else{
+                toast("값을 선택해주세요")
+            }
         }
     }
 
-    internal fun getRefTemp(refTemp: Float, userTemp: Float, type: Int): Float { //type 1234
+    internal fun getRefTemp(refTemp: Float, userTemp: Float, type: Int): Float {
+
         var userTemp = userTemp
-        val soCold = findViewById<View>(R.id.soCold) as RadioButton
-        val cold = findViewById<View>(R.id.cold) as RadioButton
-        val soHot = findViewById<View>(R.id.soHot) as RadioButton
-        val hot = findViewById<View>(R.id.hot) as RadioButton
 
         when (type) {
             1 -> {  //추위 잘 타는 사람
@@ -81,7 +83,7 @@ class Survey5Activity : AppCompatActivity(){
                 else if (hot.isChecked) userTemp -= 2
             }
         }
-        return refTemp / userTemp / 2
+        return (refTemp + userTemp) / 2
     }
 
     fun onlyOneChecked(v: View) {
