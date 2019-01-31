@@ -23,7 +23,7 @@ class ChangePersonDataActivity : AppCompatActivity() {
 
         tv_change_person_data_clear.setOnClickListener {
             SharedPreferenceController.clearUserSharedPreferences(this)
-            val intent: Intent = Intent(this, SplashActivity::class.java)
+            val intent: Intent = Intent(this, StartActivity::class.java)
             startActivity(intent)
         }
     }

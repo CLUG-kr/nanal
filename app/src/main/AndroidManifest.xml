@@ -13,15 +13,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity">
+
+        </activity>
+        <activity android:name=".activity.ChangePersonDataActivity" />
+        <activity android:name=".activity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ChangePersonDataActivity" />
-        <activity android:name=".activity.SplashActivity" />
         <activity android:name=".activity.PushAlarmActivity"></activity>
+        <activity android:name=".activity.Survey1Activity"></activity>
+        <activity android:name=".activity.Survey2Activity"></activity>
+        <activity android:name=".activity.Survey3Activity"></activity>
+        <activity android:name=".activity.Survey4_1Activity"></activity>
+        <activity android:name=".activity.Survey4_2Activity"></activity>
+        <activity android:name=".activity.Survey4_3Activity"></activity>
+        <activity android:name=".activity.Survey5Activity"></activity>
     </application>
 
 </manifest>
