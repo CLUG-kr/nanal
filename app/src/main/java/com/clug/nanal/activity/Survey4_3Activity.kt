@@ -14,29 +14,27 @@ import kotlinx.android.synthetic.main.activity_survey4_1.*
 import kotlinx.android.synthetic.main.activity_survey4_2.*
 import kotlinx.android.synthetic.main.activity_survey4_3.*
 
-class Survey4_3Activity : AppCompatActivity(){
+class Survey4_3Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey4_3)
 
-        btn_survey4_3_ok.setOnClickListener{
+        val preTempo = intent.extras!!.getFloat("tempo")
+
+        btn_survey4_3_ok.setOnClickListener {
             val intent = Intent(this, Survey5Activity::class.java)
+            intent.putExtra("tempo", getUserTemp(preTempo))
             startActivity(intent)
             finish()
         }
     }
 
-    internal fun getUserTemp(userTemp: Int, temp: Int): Int {
-        var userTemp = userTemp
-        val pants = findViewById<View>(R.id.pants) as CheckBox
-        val thickPants = findViewById<View>(R.id.thick_pants) as CheckBox
-        val stocking = findViewById<View>(R.id.stocking) as CheckBox
-        val leggings = findViewById<View>(R.id.leggings) as CheckBox
-        userTemp = temp
+    internal fun getUserTemp(temp: Float): Float {
+        var userTemp = temp
 
         if (pants.isChecked) userTemp += 1
         if (leggings.isChecked) userTemp += 2
-        if (thickPants.isChecked) userTemp += 3
+        if (thick_pants.isChecked) userTemp += 3
         if (stocking.isChecked) userTemp += 1
 
         return userTemp

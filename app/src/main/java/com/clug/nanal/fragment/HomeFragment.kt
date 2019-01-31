@@ -25,24 +25,29 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        homeCount=SharedPreferenceController.getCount(activity!!)
+        homeCount = SharedPreferenceController.getCount(activity!!)
 
-        Log.e("homecount", ""+homeCount)
+        Log.e("homecount", "" + homeCount)
 
         configureBottomNavigation()
+
+        layout_home_no_location.setOnRefreshListener {
+            configureBottomNavigation()
+            layout_home_no_location.isRefreshing = false
+        }
     }
 
     private fun configureBottomNavigation() {
-        if(SharedPreferenceController.getUserLocationLarge(activity!!).equals("")){
+        if (SharedPreferenceController.getUserLocationLarge(activity!!).equals("")) {
             vp_home_navi_act_frag_pager.visibility = View.GONE
             pageIndicatorView.visibility = View.GONE
-            tv_home_no_location.visibility = View.VISIBLE
-        }else{
+            layout_home_no_location.visibility = View.VISIBLE
+        } else {
             vp_home_navi_act_frag_pager.visibility = View.VISIBLE
             pageIndicatorView.visibility = View.VISIBLE
-            tv_home_no_location.visibility = View.GONE
+            layout_home_no_location.visibility = View.INVISIBLE
 
-            vp_home_navi_act_frag_pager.adapter = HomeFragmentStatePagerAdapter(activity!!,childFragmentManager, homeCount)
+            vp_home_navi_act_frag_pager.adapter = HomeFragmentStatePagerAdapter(activity!!, childFragmentManager, homeCount)
             vp_home_navi_act_frag_pager.offscreenPageLimit = homeCount
 
             pageIndicatorView.count = homeCount

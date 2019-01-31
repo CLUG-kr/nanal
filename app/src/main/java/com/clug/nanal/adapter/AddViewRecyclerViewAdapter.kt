@@ -1,9 +1,7 @@
 package com.clug.nanal.adapter
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +13,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.clug.nanal.R
 import com.clug.nanal.data.AddViewData
 import com.clug.nanal.db.SharedPreferenceController
-import com.clug.nanal.fragment.AddviewDialogFragment
 
 class AddViewRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<AddViewData>) : RecyclerView.Adapter<AddViewRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): Holder {
@@ -45,8 +42,6 @@ class AddViewRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<AddVi
 
         holder.btn.setOnClickListener {
             if (dataList[position].exist) {
-                val addviewdialog: AddviewDialogFragment = AddviewDialogFragment()
-                //addviewdialog.show(ctx.get,"addviewdialog")
                 dataList[position].exist = false
                 setExistFalse(position)
                 SharedPreferenceController.setCount(ctx, SharedPreferenceController.getCount(ctx) - 1)

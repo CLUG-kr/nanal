@@ -33,8 +33,7 @@
             <ImageView
                 android:id="@+id/img_homeweather_weather_icon"
                 android:layout_width="100dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_height="80dp" />
 
             <TextView
                 android:id="@+id/boundary1"

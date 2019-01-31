@@ -8,39 +8,36 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import com.clug.nanal.R
+import com.clug.nanal.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_survey2.*
 import kotlinx.android.synthetic.main.activity_survey3.*
 import kotlinx.android.synthetic.main.activity_survey4_1.*
 import kotlinx.android.synthetic.main.activity_survey4_2.*
 
-class Survey4_2Activity : AppCompatActivity(){
+class Survey4_2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey4_2)
 
-        btn_survey4_2_ok.setOnClickListener{
+        val preTempo = intent.extras!!.getFloat("tempo")
+
+        btn_survey4_2_ok.setOnClickListener {
             val intent = Intent(this, Survey4_3Activity::class.java)
+            intent.putExtra("tempo", getUserTemp(preTempo))
             startActivity(intent)
             finish()
         }
     }
 
-    internal fun getUserTemp(userTemp: Int, temp: Int): Int {
-        var userTemp = userTemp
-        val tshirt = findViewById<View>(R.id.tshirt) as CheckBox
-        val shirt = findViewById<View>(R.id.shirt) as CheckBox
-        val mtm = findViewById<View>(R.id.mtm) as CheckBox
-        val hood = findViewById<View>(R.id.hood) as CheckBox
-        val knit = findViewById<View>(R.id.knit) as CheckBox
-        val polar = findViewById<View>(R.id.polar_t) as CheckBox
-        userTemp = temp
+    internal fun getUserTemp(temp: Float): Float {
+        var userTemp = temp
 
         if (tshirt.isChecked) userTemp += 1
         if (shirt.isChecked) userTemp += 1
         if (mtm.isChecked) userTemp += 3
         if (hood.isChecked) userTemp += 3
         if (knit.isChecked) userTemp += 5
-        if (polar.isChecked) userTemp = 7
+        if (polar_t.isChecked) userTemp += 7
 
         return userTemp
     }

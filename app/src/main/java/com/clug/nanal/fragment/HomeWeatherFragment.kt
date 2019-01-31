@@ -19,28 +19,32 @@ import kotlinx.android.synthetic.main.fragment_homeweather.*
 import org.jetbrains.anko.support.v4.toast
 import android.support.v4.view.ViewCompat.setY
 import android.support.v4.view.ViewCompat.setX
+import android.widget.RelativeLayout
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import org.jetbrains.anko.db.INTEGER
 import com.clug.nanal.adapter.HomeScreenWeather
+import kotlin.collections.ArrayList
 
 
 class HomeWeatherFragment : Fragment() {
 
-    enum class Outer private constructor(internal val num: Int, internal val warm: Int) {
+    enum class Outer constructor(internal val num: Int, internal val warm: Int) {
         CARDIGAN(21, 2), ZIPUP(22, 3), JACKET(23, 4), LEATHER(24, 5), COAT(25, 7), PADDING(26, 10)
     }
 
-    enum class Top private constructor(internal val num: Int, internal val warm: Int) {
+    enum class Top constructor(internal val num: Int, internal val warm: Int) {
         SLEEVELESS(11, 0), SHORT_TSHIRT(12, 0), SHORT_SHIRT(13, 0), TSHIRT(14, 1),
         SHIRT(15, 1), POLAR(16, 6), MTM(17, 3), HOOD(18, 3), KNIT(19, 5)
     }
 
-    enum class Bottom private constructor(internal val num: Int, internal val warm: Int) {
+    enum class Bottom constructor(internal val num: Int, internal val warm: Int) {
         SHORT_PANTS(1, 0), PANTS(2, 1), THICK_PANTS(3, 3), STOCKING(4, 1), SKIRT(5, 0), LEGGINGS(6, 2)
     }
 
     lateinit var name: String
     lateinit var sex: String
-    var tempo: Int = 0
+    var tempo: Float = 0.0F
 
     lateinit var homeweather: HomeScreenWeather
 
@@ -80,6 +84,73 @@ class HomeWeatherFragment : Fragment() {
         }
     }
 
+    fun setSkyState(input_data: Int) {
+
+        val requestOptions = RequestOptions()
+
+        when (input_data) {
+            0 -> {
+                tv_homeweather_title.text = "정보 없음"
+                tv_homeweather_info.text = ""
+
+            }
+            1 -> {
+                tv_homeweather_title.text = "비 오는 날"
+                tv_homeweather_info.text = ""
+                Glide.with(activity!!)
+                        .setDefaultRequestOptions(requestOptions)
+                        .load("https://github.com/CLUG-kr/nanal/blob/master/mise/rain.png?raw=true")
+                        .thumbnail(0.5f)
+                        .into(img_homeweather_weather_icon)
+            }
+            2 -> {
+                tv_homeweather_title.text = "비 또는 눈"
+                tv_homeweather_info.text = ""
+
+            }
+            3 -> {
+                tv_homeweather_title.text = "눈 오는 날"
+                tv_homeweather_info.text = ""
+            }
+            4 -> {
+                tv_homeweather_title.text = "오늘은 맑음"
+                tv_homeweather_info.text = ""
+                Glide.with(activity!!)
+                        .setDefaultRequestOptions(requestOptions)
+                        .load("https://github.com/CLUG-kr/nanal/blob/master/mise/sun.png?raw=true")
+                        .thumbnail(0.5f)
+                        .into(img_homeweather_weather_icon)
+            }
+            5 -> {
+                tv_homeweather_title.text = "구름 조금"
+                tv_homeweather_info.text = ""
+                Glide.with(activity!!)
+                        .setDefaultRequestOptions(requestOptions)
+                        .load("https://github.com/CLUG-kr/nanal/blob/master/mise/blur.png?raw=true")
+                        .thumbnail(0.5f)
+                        .into(img_homeweather_weather_icon)
+            }
+            6 ->{
+                tv_homeweather_title.text = "구름 많음"
+                tv_homeweather_info.text = ""
+                Glide.with(activity!!)
+                        .setDefaultRequestOptions(requestOptions)
+                        .load("https://github.com/CLUG-kr/nanal/blob/master/mise/cloud.png?raw=true")
+                        .thumbnail(0.5f)
+                        .into(img_homeweather_weather_icon)
+            }
+            7 ->{
+                tv_homeweather_title.text = "흐림"
+                tv_homeweather_info.text = ""
+                Glide.with(activity!!)
+                        .setDefaultRequestOptions(requestOptions)
+                        .load("https://github.com/CLUG-kr/nanal/blob/master/mise/fog.png?raw=true")
+                        .thumbnail(0.5f)
+                        .into(img_homeweather_weather_icon)
+            }
+        }
+
+    }
 
     fun getSharedPreferenceController() {
         name = SharedPreferenceController.getUserName(activity!!)
@@ -95,16 +166,21 @@ class HomeWeatherFragment : Fragment() {
         return dFormat.format(mDate)
     }
 
-    fun getTime(): String {
+    private fun getTime(): String {
         mNow = System.currentTimeMillis()
-        //return tFormat.format(mNow);
         val now = Integer.parseInt(tFormat.format(mNow))
-        return if (now % 100 / 10 <= 2) {
-            if (now / 1000 == 0) {
+        if (now % 100 / 10 < 2) {
+            if (now / 100 == 1) {
+                return "00" + Integer.toString(now - 70)
+            }
+            return if (now / 1000 == 0) {
                 "0" + Integer.toString(now - 70)
             } else {
                 Integer.toString(now - 70)
             }
+        }
+        return if ((now - 2400) / 100 == 0) {
+            "00" + Integer.toString(now - 2400)
         } else tFormat.format(mNow)
     }
 
@@ -184,13 +260,13 @@ class HomeWeatherFragment : Fragment() {
 
                     XmlPullParser.END_TAG -> if (parser.name == "text") {
 
-                        if(city.equals(home.getCity())){
-                            if(borough.equals(home.getBorough())){
-                                if(dong.equals("없음")){
+                        if (city.equals(home.getCity())) {
+                            if (borough.equals(home.getBorough())) {
+                                if (dong.equals("없음")) {
                                     home.setX(x!!);
                                     home.setY(y!!);
                                 }
-                                if(dong.equals(home.getDong())){
+                                if (dong.equals(home.getDong())) {
                                     home.setX(x!!);
                                     home.setY(y!!);
                                 }
@@ -291,6 +367,10 @@ class HomeWeatherFragment : Fragment() {
         var inFcstValue = false
         var fcstValue: String? = null
 
+        if (Integer.parseInt(getTime()) < 200) {
+            baseDate = Integer.toString(Integer.parseInt(getDate()) - 1);
+        }
+
         try {
             val url = URL("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?"
                     + "ServiceKey=5ny%2BgWDJ3dvUmT9kVraVmNfshj0c5IYbmljioUf41qMAC5CzEeHV%2B1IEFclnyHZmo3TfwvmxQL8n2D8IvF%2F7fA%3D%3D"
@@ -363,23 +443,15 @@ class HomeWeatherFragment : Fragment() {
         homeweather.setBorough(location_Medium)
         homeweather.setDong(location_Small)
 
-
-        toast(location_Large + " " + location_Medium + " " + location_Small)
         locateParsing(homeweather)
-
-
-        toast("x좌표 : " + homeweather.getX() + " y좌표 : " + homeweather.getY())
 
         homeParsing(homeweather)
 
         tv_homeweather_now_degree.text = homeweather.getTemperature() + "ºC"
+        //SharedPreferenceController.setNowTempo(activity!!, java.lang.Float.parseFloat(homeweather.getTemperature()))
         tv_homeweather_mm_degree.text = homeweather.getHighest() + "/" + homeweather.getLowest() + "ºC"
 
-        toast("하늘 상태 : " + homeweather.getSky())
-    }
-
-    fun setCloset() {
-
+        setSkyState(homeweather.getSky())
     }
 
     fun abs(num: Float): Float {
@@ -414,6 +486,14 @@ class HomeWeatherFragment : Fragment() {
             if (arr[i] == 100) arr[i] = 0
         }
         return arr
+    }
+
+    fun SexStringtoInt(s: String): Int {
+        if (s.equals("남")) {
+            return 1
+        } else {
+            return 2
+        }
     }
 
     fun combOfBottom(remain: Int, gender: Int): IntArray {
@@ -597,5 +677,14 @@ class HomeWeatherFragment : Fragment() {
         return sort(clothes)
     }
 
+    fun setCloset() {
+        val clothes: IntArray = selectClothes(SharedPreferenceController.getUserTempo(activity!!), SharedPreferenceController.getNowTempo(activity!!), SexStringtoInt(SharedPreferenceController.getUserSex(activity!!)))
+        var i: Int = 0
+
+        while (clothes[i] != 0) {
+            toast("" + clothes[i])
+            i++
+        }
+    }
 
 }
