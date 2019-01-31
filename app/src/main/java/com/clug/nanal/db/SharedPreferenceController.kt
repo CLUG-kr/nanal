@@ -9,7 +9,8 @@ object SharedPreferenceController {
     private val USER_NAME: String? = "user_name"
     private val USER_SEX: String? ="user_sex"
     private val USER_TEMPO: String? = "user_tempo"
-
+    private val USER_TYPE: String? = "user_type"
+    private val NOW_TEMPO: String? = "now_tempo"
     private val USER_LOCATION_LARGE: String? = "user_location_large"
     private val USER_LOCATION_MEDIUM: String? = "user_location_medium"
     private val USER_LOCATION_SMALL: String? = "user_location_small"
@@ -37,10 +38,17 @@ object SharedPreferenceController {
         editor.commit()
     }
 
-    fun setUserTempo(ctx: Context, input_tempo: F) {                            //비밀번호 설정
+    fun setUserTempo(ctx: Context, input_tempo: Float) {                            //비밀번호 설정
         val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = preferences.edit()
         editor.putFloat(USER_TEMPO, input_tempo)
+        editor.commit()
+    }
+
+    fun setNowTempo(ctx: Context, input_tempo: Float) {                            //비밀번호 설정
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putFloat(NOW_TEMPO, input_tempo)
         editor.commit()
     }
 
@@ -135,6 +143,13 @@ object SharedPreferenceController {
         editor.commit()
     }
 
+    fun setUserType(ctx: Context, input_int : Int) {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putInt(USER_TYPE, input_int)
+        editor.commit()
+    }
+
     fun setCount(ctx: Context, input_int : Int) {
         val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = preferences.edit()
@@ -152,9 +167,14 @@ object SharedPreferenceController {
         return preferences.getString(USER_SEX, "")
     }
 
-    fun getUserTempo(ctx: Context): Int {
+    fun getUserTempo(ctx: Context): Float {
         val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
-        return preferences.getFloat(USER_TEMPO, 22.0)
+        return preferences.getFloat(USER_TEMPO, 22.0F)
+    }
+
+    fun getNowTempo(ctx: Context): Float {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        return preferences.getFloat(NOW_TEMPO, 0.0F)
     }
 
     fun getUserLocationLarge(ctx: Context): String {
@@ -195,6 +215,11 @@ object SharedPreferenceController {
     fun getHome5(ctx: Context): String {
         val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
         return preferences.getString(HOME5, "")
+    }
+
+    fun getUserType(ctx: Context): Int {
+        val preferences: SharedPreferences = ctx.getSharedPreferences("data", Context.MODE_PRIVATE)
+        return preferences.getInt(USER_TYPE, 0)
     }
 
     fun getCount(ctx: Context): Int {

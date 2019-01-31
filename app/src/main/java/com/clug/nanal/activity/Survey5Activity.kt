@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_survey4_1.*
 import kotlinx.android.synthetic.main.activity_survey4_2.*
 import kotlinx.android.synthetic.main.activity_survey4_3.*
 import kotlinx.android.synthetic.main.activity_survey5.*
+import org.jetbrains.anko.toast
 import java.util.*
 
 class Survey5Activity : AppCompatActivity(){
@@ -24,20 +25,17 @@ class Survey5Activity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey5)
 
+        val preTempo = intent.extras!!.getFloat("tempo")
+
         btn_survey5_ok.setOnClickListener{
-            /*
-            if(){
-
-            }else{
-
-            }
-             */
-            getRefTemp(SharedPreferenceController.getUserTempo(this),22,1)
+            SharedPreferenceController.setUserTempo(this,
+                    getRefTemp(preTempo, SharedPreferenceController.getUserTempo(this),SharedPreferenceController.getUserType(this)))
+            toast(""+SharedPreferenceController.getUserTempo(this))
             finish()
         }
     }
 
-    internal fun getRefTemp(refTemp: Int, userTemp: Int, type: Int): Int { //type 1234
+    internal fun getRefTemp(refTemp: Float, userTemp: Float, type: Int): Float { //type 1234
         var userTemp = userTemp
         val soCold = findViewById<View>(R.id.soCold) as RadioButton
         val cold = findViewById<View>(R.id.cold) as RadioButton
@@ -126,6 +124,4 @@ class Survey5Activity : AppCompatActivity(){
             }
         }
     }
-
-
 }

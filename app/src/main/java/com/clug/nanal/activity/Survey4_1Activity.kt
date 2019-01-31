@@ -12,30 +12,28 @@ import com.clug.nanal.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_survey2.*
 import kotlinx.android.synthetic.main.activity_survey3.*
 import kotlinx.android.synthetic.main.activity_survey4_1.*
+import org.jetbrains.anko.toast
 
-class Survey4_1Activity : AppCompatActivity(){
+class Survey4_1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey4_1)
 
-        btn_survey4_1_ok.setOnClickListener{
-            getUserTemp(26)
-
-            val intent = Intent(this, Survey4_2Activity::class.java)
-            startActivity(intent)
+        if(SharedPreferenceController.getUserLocationLarge(this).equals("")&&SharedPreferenceController.getNowTempo(this)==0.0F){
+            toast("위치 정보가 없습니다. 먼저 위치를 설정해주세요")
             finish()
+        }else{
+            btn_survey4_1_ok.setOnClickListener {
+                val intent = Intent(this, Survey4_2Activity::class.java)
+                intent.putExtra("tempo", getUserTemp(SharedPreferenceController.getNowTempo(this)))
+                startActivity(intent)
+                finish()
+            }
         }
     }
 
-    internal fun getUserTemp(temp: Int): Int {
-        var userTemp = SharedPreferenceController.getUserTempo(this)
-        val cardigan = findViewById<View>(R.id.cardigan) as CheckBox
-        val zipup = findViewById<View>(R.id.zipup) as CheckBox
-        val jacket = findViewById<View>(R.id.jacket) as CheckBox
-        val leather = findViewById<View>(R.id.leather) as CheckBox
-        val coat = findViewById<View>(R.id.coat) as CheckBox
-        val padding = findViewById<View>(R.id.padding) as CheckBox
-        userTemp = temp
+    internal fun getUserTemp(temp: Float): Float {
+        var userTemp = temp
 
         if (cardigan.isChecked) userTemp += 2
         if (zipup.isChecked) userTemp += 3
