@@ -20,7 +20,7 @@ class Survey4_1Activity : AppCompatActivity() {
         setContentView(R.layout.activity_survey4_1)
 
         if(SharedPreferenceController.getUserLocationLarge(this).equals("")&&SharedPreferenceController.getNowTempo(this)==0.0F){
-            toast("위치 정보가 없습니다. 먼저 위치를 설정해주세요")
+            toast("위치 정보가 없습니다.\n먼저 위치를 설정해주세요")
             finish()
         }else{
             btn_survey4_1_ok.setOnClickListener {

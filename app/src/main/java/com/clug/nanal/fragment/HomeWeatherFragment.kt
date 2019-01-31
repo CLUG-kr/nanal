@@ -54,6 +54,7 @@ class HomeWeatherFragment : Fragment() {
 
     var mNow: Long = 0
     lateinit var mDate: Date
+    var flag = 0
     var tFormat = SimpleDateFormat("kkmm")
     var dFormat = SimpleDateFormat("yyyyMMdd")
 
@@ -130,7 +131,7 @@ class HomeWeatherFragment : Fragment() {
                         .thumbnail(0.5f)
                         .into(img_homeweather_weather_icon)
             }
-            6 ->{
+            6 -> {
                 tv_homeweather_title.text = "구름 많음"
                 tv_homeweather_info.text = ""
                 Glide.with(activity!!)
@@ -139,7 +140,7 @@ class HomeWeatherFragment : Fragment() {
                         .thumbnail(0.5f)
                         .into(img_homeweather_weather_icon)
             }
-            7 ->{
+            7 -> {
                 tv_homeweather_title.text = "흐림"
                 tv_homeweather_info.text = ""
                 Glide.with(activity!!)
@@ -172,6 +173,9 @@ class HomeWeatherFragment : Fragment() {
         if (now % 100 / 10 < 2) {
             if (now / 100 == 1) {
                 return "00" + Integer.toString(now - 70)
+            }
+            if(now/100 == 2){
+                flag = 1;
             }
             return if (now / 1000 == 0) {
                 "0" + Integer.toString(now - 70)
@@ -296,6 +300,7 @@ class HomeWeatherFragment : Fragment() {
         var category: String? = null
         var obsrValue: String? = null
 
+
         val homeweather = HomeScreenWeather()
 
         baseTime = getTime()
@@ -367,10 +372,10 @@ class HomeWeatherFragment : Fragment() {
         var inFcstValue = false
         var fcstValue: String? = null
 
-        if (Integer.parseInt(getTime()) < 200) {
-            baseDate = Integer.toString(Integer.parseInt(getDate()) - 1);
+        if(Integer.parseInt(getTime())<200 && flag == 0){
+            baseDate = Integer.toString(Integer.parseInt(getDate())-1);
         }
-
+        
         try {
             val url = URL("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?"
                     + "ServiceKey=5ny%2BgWDJ3dvUmT9kVraVmNfshj0c5IYbmljioUf41qMAC5CzEeHV%2B1IEFclnyHZmo3TfwvmxQL8n2D8IvF%2F7fA%3D%3D"
@@ -686,5 +691,4 @@ class HomeWeatherFragment : Fragment() {
             i++
         }
     }
-
 }
