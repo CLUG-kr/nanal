@@ -12,9 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
-
-        </activity>
+        <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.ChangePersonDataActivity" />
         <activity android:name=".activity.StartActivity">
             <intent-filter>
@@ -23,14 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PushAlarmActivity"></activity>
-        <activity android:name=".activity.Survey1Activity"></activity>
-        <activity android:name=".activity.Survey2Activity"></activity>
-        <activity android:name=".activity.Survey3Activity"></activity>
-        <activity android:name=".activity.Survey4_1Activity"></activity>
-        <activity android:name=".activity.Survey4_2Activity"></activity>
-        <activity android:name=".activity.Survey4_3Activity"></activity>
-        <activity android:name=".activity.Survey5Activity"></activity>
+        <activity android:name=".activity.PushAlarmActivity" />
+        <activity android:name=".activity.Survey1Activity" />
+        <activity android:name=".activity.Survey2Activity" />
+        <activity android:name=".activity.Survey3Activity" />
+        <activity android:name=".activity.Survey4_1Activity" />
+        <activity android:name=".activity.Survey4_2Activity" />
+        <activity android:name=".activity.Survey4_3Activity" />
+        <activity android:name=".activity.Survey5Activity" />
+        <activity android:name=".activity.TestActivity"></activity>
     </application>
 
 </manifest>
