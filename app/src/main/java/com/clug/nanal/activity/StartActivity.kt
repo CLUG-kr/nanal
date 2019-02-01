@@ -7,6 +7,8 @@ import android.os.Handler
 import com.clug.nanal.R
 import kotlinx.android.synthetic.main.activity_start.*
 import android.support.v4.os.HandlerCompat.postDelayed
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.clug.nanal.db.SharedPreferenceController
 
 
@@ -15,6 +17,13 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
+
+        val requestOptions = RequestOptions()
+        Glide.with(this)
+                .setDefaultRequestOptions(requestOptions)
+                .load("https://github.com/CLUG-kr/nanal/blob/master/logo.png?raw=true")
+                .thumbnail(0.5f)
+                .into(img_logo)
 
         Handler().postDelayed({
             if(SharedPreferenceController.getUserName(this)==""){
@@ -26,7 +35,7 @@ class StartActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        }, 2000)// 0.5초 정도 딜레이를 준 후 시작
+        }, 1500)// 0.5초 정도 딜레이를 준 후 시작
     }
 }
 

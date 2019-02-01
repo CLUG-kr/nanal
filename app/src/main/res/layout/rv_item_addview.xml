@@ -17,8 +17,7 @@
             android:layout_height="296dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:scaleType="fitCenter"
-            app:srcCompat="@mipmap/ic_launcher" />
+            android:scaleType="fitCenter" />
 
         <TextView
             android:id="@+id/tv_rv_item_addview"

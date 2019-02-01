@@ -101,8 +101,6 @@ class LocationFragment : Fragment() {
 
                 val a = addr!![0]
 
-                toast(a.adminArea + " " + a.subLocality + " " + a.thoroughfare)
-
                 tv_location_notify.text = "설정된 위치 : " + a.adminArea + " " + a.subLocality+ " " + a.thoroughfare
 
                 SharedPreferenceController.setUserLocationLarge(activity!!, a.adminArea)
