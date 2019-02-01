@@ -13,7 +13,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="미세먼지 많은 날"
         android:textSize="28dp" />
 
     <LinearLayout
@@ -42,14 +41,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:text="98㎛/㎥"
                 android:textSize="24dp" />
 
             <TextView
                 android:id="@+id/tv_homedust_normal_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="나쁨"
                 android:textSize="24dp" />
         </LinearLayout>
 
@@ -80,14 +77,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:text="34㎛/㎥"
                 android:textSize="24dp" />
 
             <TextView
                 android:id="@+id/tv_homedust_small_degree2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="보통"
                 android:textSize="24dp" />
         </LinearLayout>
 
@@ -107,10 +102,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/backbox"
         android:gravity="center"
-        android:padding="16dp"
-        android:text="미세먼지 농도가 높으므로
-외부 활동을 자제해주시고
-마스크를 필히 착용하시길 바랍니다" />
+        android:padding="16dp"/>
 
 
 </LinearLayout>

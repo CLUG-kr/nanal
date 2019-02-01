@@ -83,7 +83,9 @@ class Survey5Activity : AppCompatActivity() {
                 else if (hot.isChecked) userTemp -= 2
             }
         }
-        return (refTemp + userTemp) / 2
+        if(userTemp<18) userTemp=18.0F
+        if(userTemp>26) userTemp=26.0F
+        return (refTemp+userTemp)/2
     }
 
     fun onlyOneChecked(v: View) {
@@ -126,4 +128,6 @@ class Survey5Activity : AppCompatActivity() {
             }
         }
     }
+
+
 }

@@ -46,6 +46,7 @@ class HomeWeatherFragment : Fragment() {
     lateinit var sex: String
     var tempo: Float = 0.0F
 
+
     lateinit var homeweather: HomeScreenWeather
 
     lateinit var location_Large: String
@@ -83,6 +84,8 @@ class HomeWeatherFragment : Fragment() {
 
             refresh_homeweather.isRefreshing = false
         }
+
+
     }
 
     fun setSkyState(input_data: Int) {
@@ -93,11 +96,10 @@ class HomeWeatherFragment : Fragment() {
             0 -> {
                 tv_homeweather_title.text = "정보 없음"
                 tv_homeweather_info.text = ""
-
             }
             1 -> {
                 tv_homeweather_title.text = "비 오는 날"
-                tv_homeweather_info.text = ""
+                tv_homeweather_info.text = "오늘은 비가 와요. 우산 꼭 챙겨서 나가기!"
                 Glide.with(activity!!)
                         .setDefaultRequestOptions(requestOptions)
                         .load("https://github.com/CLUG-kr/nanal/blob/master/mise/rain.png?raw=true")
@@ -106,16 +108,26 @@ class HomeWeatherFragment : Fragment() {
             }
             2 -> {
                 tv_homeweather_title.text = "비 또는 눈"
-                tv_homeweather_info.text = ""
+                tv_homeweather_info.text = "눈 또는 비가 오니 우산 챙기시고 미끄럼 조심하세요."
+                Glide.with(activity!!)
+                        .setDefaultRequestOptions(requestOptions)
+                        .load("https://github.com/CLUG-kr/nanal/blob/master/mise/snowrain2.png?raw=true")
+                        .thumbnail(0.5f)
+                        .into(img_homeweather_weather_icon)
 
             }
             3 -> {
                 tv_homeweather_title.text = "눈 오는 날"
-                tv_homeweather_info.text = ""
+                tv_homeweather_info.text = "창 밖을 보세요.\n눈이 와요! 눈사람을 만들어봐요"
+                Glide.with(activity!!)
+                        .setDefaultRequestOptions(requestOptions)
+                        .load("https://github.com/CLUG-kr/nanal/blob/master/mise/snow2.png?raw=true")
+                        .thumbnail(0.5f)
+                        .into(img_homeweather_weather_icon)
             }
             4 -> {
                 tv_homeweather_title.text = "오늘은 맑음"
-                tv_homeweather_info.text = ""
+                tv_homeweather_info.text = "날씨가 맑네요.\n야외활동도 좋지만 그 전에 미세먼지도 확인해야 하는 거 잊지 마세요!"
                 Glide.with(activity!!)
                         .setDefaultRequestOptions(requestOptions)
                         .load("https://github.com/CLUG-kr/nanal/blob/master/mise/sun.png?raw=true")
@@ -124,7 +136,7 @@ class HomeWeatherFragment : Fragment() {
             }
             5 -> {
                 tv_homeweather_title.text = "구름 조금"
-                tv_homeweather_info.text = ""
+                tv_homeweather_info.text = "구름이 조금 있어요. 그래도 맑은 편이랍니다."
                 Glide.with(activity!!)
                         .setDefaultRequestOptions(requestOptions)
                         .load("https://github.com/CLUG-kr/nanal/blob/master/mise/blur.png?raw=true")
@@ -133,7 +145,7 @@ class HomeWeatherFragment : Fragment() {
             }
             6 -> {
                 tv_homeweather_title.text = "구름 많음"
-                tv_homeweather_info.text = ""
+                tv_homeweather_info.text = "구름이 많아요. 하지만 외출에는 지장 없을 거예요."
                 Glide.with(activity!!)
                         .setDefaultRequestOptions(requestOptions)
                         .load("https://github.com/CLUG-kr/nanal/blob/master/mise/cloud.png?raw=true")
@@ -142,7 +154,7 @@ class HomeWeatherFragment : Fragment() {
             }
             7 -> {
                 tv_homeweather_title.text = "흐림"
-                tv_homeweather_info.text = ""
+                tv_homeweather_info.text = "흐리지만 비가 오는 것은 아니니 안심하세요."
                 Glide.with(activity!!)
                         .setDefaultRequestOptions(requestOptions)
                         .load("https://github.com/CLUG-kr/nanal/blob/master/mise/fog.png?raw=true")
@@ -174,7 +186,7 @@ class HomeWeatherFragment : Fragment() {
             if (now / 100 == 1) {
                 return "00" + Integer.toString(now - 70)
             }
-            if(now/100 == 2){
+            if (now / 100 == 2) {
                 flag = 1;
             }
             return if (now / 1000 == 0) {
@@ -372,10 +384,10 @@ class HomeWeatherFragment : Fragment() {
         var inFcstValue = false
         var fcstValue: String? = null
 
-        if(Integer.parseInt(getTime())<200 && flag == 0){
-            baseDate = Integer.toString(Integer.parseInt(getDate())-1);
+        if (Integer.parseInt(getTime()) < 200 && flag == 0) {
+            baseDate = Integer.toString(Integer.parseInt(getDate()) - 1);
         }
-        
+
         try {
             val url = URL("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?"
                     + "ServiceKey=5ny%2BgWDJ3dvUmT9kVraVmNfshj0c5IYbmljioUf41qMAC5CzEeHV%2B1IEFclnyHZmo3TfwvmxQL8n2D8IvF%2F7fA%3D%3D"
@@ -453,7 +465,7 @@ class HomeWeatherFragment : Fragment() {
         homeParsing(homeweather)
 
         tv_homeweather_now_degree.text = homeweather.getTemperature() + "ºC"
-        //SharedPreferenceController.setNowTempo(activity!!, java.lang.Float.parseFloat(homeweather.getTemperature()))
+        SharedPreferenceController.setNowTempo(activity!!, java.lang.Float.parseFloat(homeweather.getTemperature()))
         tv_homeweather_mm_degree.text = homeweather.getHighest() + "/" + homeweather.getLowest() + "ºC"
 
         setSkyState(homeweather.getSky())
@@ -683,12 +695,196 @@ class HomeWeatherFragment : Fragment() {
     }
 
     fun setCloset() {
-        val clothes: IntArray = selectClothes(SharedPreferenceController.getUserTempo(activity!!), SharedPreferenceController.getNowTempo(activity!!), SexStringtoInt(SharedPreferenceController.getUserSex(activity!!)))
-        var i: Int = 0
 
-        while (clothes[i] != 0) {
-            toast("" + clothes[i])
-            i++
+
+
+        val requestOptions = RequestOptions()
+        val clothes: IntArray = selectClothes(SharedPreferenceController.getUserTempo(activity!!), SharedPreferenceController.getNowTempo(activity!!), SexStringtoInt(SharedPreferenceController.getUserSex(activity!!)))
+
+        if (SharedPreferenceController.getUserSex(activity!!).equals("남")) {
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load("https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/man.png?raw=true")
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_people)
+        } else {
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load("https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/woman.png?raw=true")
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_people)
+        }
+
+        if (clothes[0] != 0) {
+            img_homeweather_1.visibility = View.VISIBLE
+
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getBigImgUrl(clothes[0]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_1)
+
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getSmallImgUrl(clothes[0]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_l1)
+        }
+
+        if (clothes[1] != 0) {
+            img_homeweather_2.visibility = View.VISIBLE
+
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getBigImgUrl(clothes[1]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_2)
+
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getSmallImgUrl(clothes[1]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_r1)
+        }
+
+        if (clothes[2] != 0) {
+            img_homeweather_3.visibility = View.VISIBLE
+
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getBigImgUrl(clothes[2]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_3)
+
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getSmallImgUrl(clothes[2]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_l2)
+        }
+
+        if (clothes[3] != 0) {
+            img_homeweather_4.visibility = View.VISIBLE
+            img_homeweather_r2.visibility = View.VISIBLE
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getBigImgUrl(clothes[3]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_4)
+
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getSmallImgUrl(clothes[3]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_r2)
+        }else{
+            img_homeweather_4.visibility = View.INVISIBLE
+            img_homeweather_r2.visibility = View.INVISIBLE
+        }
+
+
+        if (clothes[4] != 0) {
+            img_homeweather_5.visibility = View.VISIBLE
+            img_homeweather_l3.visibility = View.VISIBLE
+
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getBigImgUrl(clothes[4]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_5)
+
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getSmallImgUrl(clothes[4]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_l3)
+        }else{
+            img_homeweather_5.visibility = View.INVISIBLE
+            img_homeweather_l3.visibility = View.INVISIBLE
+        }
+
+        if (clothes[5] != 0) {
+            img_homeweather_4.visibility = View.VISIBLE
+            img_homeweather_r3.visibility = View.VISIBLE
+
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getBigImgUrl(clothes[5]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_6)
+
+            Glide.with(activity!!)
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(getSmallImgUrl(clothes[5]))
+                    .thumbnail(0.5f)
+                    .into(img_homeweather_r3)
+        }else{
+            img_homeweather_6.visibility = View.INVISIBLE
+            img_homeweather_r3.visibility = View.INVISIBLE
+        }
+    }
+
+    fun getBigImgUrl(input_data: Int): String {
+        when (input_data) {
+            1 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/short_pants.png?raw=true"
+            2 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/pants.png?raw=true"
+            3 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/thick_pants.png?raw=true"
+            4 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/stocking.png?raw=true"
+            5 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/skirt.png?raw=true"
+            6 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/leggings.png?raw=true"
+            7 -> return ""
+            8 -> return ""
+            9 -> return ""
+            10 -> return ""
+            11 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/sleeveless.png?raw=true"
+            12 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/short_tshirt.png?raw=true"
+            13 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/short_shirt.png?raw=true"
+            14 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/tshirt.png?raw=true"
+            15 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/shirt.png?raw=true"
+            16 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/polar.png?raw=true"
+            17 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/mtm.png?raw=true"
+            18 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/hood.png?raw=true"
+            19 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/knit.png?raw=true"
+            20 -> return ""
+            21 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/cardian.png?raw=true"
+            22 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/zipup.png?raw=true"
+            23 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/jacket.png?raw=true"
+            24 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/leather.png?raw=true"
+            25 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/coat.png?raw=true"
+            26 -> return "https://github.com/CLUG-kr/nanal/blob/master/clothe%20image%20png/padding.png?raw=true"
+            else -> return ""
+        }
+    }
+
+    fun getSmallImgUrl(input_data: Int): String {
+        when (input_data) {
+            1 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/short_pants.png?raw=true"
+            2 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/pants.png?raw=true"
+            3 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/thick_pants.png?raw=true"
+            4 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/stocking.png?raw=true"
+            5 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/skirt.png?raw=true"
+            6 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/leggings.png?raw=true"
+            7 -> return ""
+            8 -> return ""
+            9 -> return ""
+            10 -> return ""
+            11 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/sleeveless.png?raw=true"
+            12 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/short_tshirt.png?raw=true"
+            13 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/short_shirt.png?raw=true"
+            14 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/tshirt.png?raw=true"
+            15 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/shirt.png?raw=true"
+            16 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/polar.png?raw=true"
+            17 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/mtm.png?raw=true"
+            18 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/hood.png?raw=true"
+            19 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/knit.png?raw=true"
+            20 -> return ""
+            21 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/cardigan.png?raw=true"
+            22 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/zipup.png?raw=true"
+            23 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/jacket.png?raw=true"
+            24 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/leather.png?raw=true"
+            25 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/coat.png?raw=true"
+            26 -> return "https://github.com/CLUG-kr/nanal/blob/master/bit%20clothe%20file%20png/padding.png?raw=true"
+            else -> return ""
         }
     }
 }

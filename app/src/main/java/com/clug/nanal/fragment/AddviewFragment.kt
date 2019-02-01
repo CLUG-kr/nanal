@@ -28,7 +28,7 @@ class AddviewFragment: Fragment(){
 
     private fun setRecyclerView(){
         var dataList : ArrayList<AddViewData> = ArrayList()
-        dataList.add(AddViewData("날씨 온도", "", setExist(SharedPreferenceController.getHome1(activity!!))))
+        dataList.add(AddViewData("날씨 온도", "https://github.com/CLUG-kr/nanal/blob/master/screen.jpg?raw=true", setExist(SharedPreferenceController.getHome1(activity!!))))
         dataList.add(AddViewData("미세먼지", "https://github.com/CLUG-kr/nanal/blob/master/mise/mise.jpg?raw=true",setExist(SharedPreferenceController.getHome2(activity!!))))
         dataList.add(AddViewData("이번주 날씨", "",setExist(SharedPreferenceController.getHome3(activity!!))))
         dataList.add(AddViewData("등산", "",setExist(SharedPreferenceController.getHome4(activity!!))))
